@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;net472</TargetFrameworks>
+    <Nullable>enable</Nullable>
+
+    <PackageId>Corellian.Versio</PackageId>
+    <Title>Corellian Versio</Title>
+    <Description>A MS Build task which creates a unique version based off Git and a local diff.</Description>
+    <Version>0.0.11</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LibGit2Sharp" Version="0.27.2" CopyLocal="true" Publish="true" PrivateAssets="all" />
+    <PackageReference Include="System.Text.Json" Version="6.0.8" CopyLocal="true" Publish="true" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == ''">
+    <None Include="$(MSBuildProjectName).props" PackagePath="build" Pack="true" />
+    <None Include="$(MSBuildProjectName).targets" PackagePath="build" Pack="true" />
+    <None Include="..\Corellian.Versio.Task\bin\$(Configuration)\net6.0\publish\**\*.*" PackagePath="build\netcore" Pack="true" />
+    <None Include="..\Corellian.Versio.Task\bin\$(Configuration)\net472\publish\**\*.*" PackagePath="build\netfx" Pack="true" />
+  </ItemGroup>
+
+</Project>

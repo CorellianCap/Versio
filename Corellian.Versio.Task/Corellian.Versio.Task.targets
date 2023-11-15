@@ -1,0 +1,24 @@
+<Project>
+
+  <PropertyGroup>
+    <GitDiffVersionTaskAssembly>$(MSBuildThisFileDirectory)\$(MSBuildThisFileName).dll</GitDiffVersionTaskAssembly>
+  </PropertyGroup>
+
+  <UsingTask TaskName="$(MSBuildThisFileName).GitDiffVersionTask" AssemblyFile="$(GitDiffVersionTaskAssembly)"/>
+
+  <PropertyGroup>
+    <TargetsTriggeredByCompilation>
+      $(TargetsTriggeredByCompilation);
+      RunGitDiffVersionTask
+    </TargetsTriggeredByCompilation>
+  </PropertyGroup>
+
+  <Target Name="RunGitDiffVersionTask">
+    <GitDiffVersionTask
+      ProjectName="$(MSBuildProjectName)"
+      ProjectDirectory="$(MSBuildProjectDirectory)"
+      OutputDirectory="$(OutputPath)">
+    </GitDiffVersionTask>
+  </Target>
+
+</Project>

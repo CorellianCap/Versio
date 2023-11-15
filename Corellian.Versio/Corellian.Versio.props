@@ -1,0 +1,10 @@
+<Project>
+
+  <PropertyGroup Condition="'$(GitDiffVersionTaskDirectory)' == ''">
+    <GitDiffVersionTaskDirectory Condition="'$(MSBuildRuntimeType)' == 'Core'">$(MSBuildThisFileDirectory)\netcore</GitDiffVersionTaskDirectory>
+    <GitDiffVersionTaskDirectory Condition="'$(MSBuildRuntimeType)' != 'Core'">$(MSBuildThisFileDirectory)\netfx</GitDiffVersionTaskDirectory>
+  </PropertyGroup>
+
+  <Import Project="$(GitDiffVersionTaskDirectory)\Corellian.Versio.Task.props" Condition="'$(GitDiffVersionTaskEnabled)' != 'False'"/>
+
+</Project>
